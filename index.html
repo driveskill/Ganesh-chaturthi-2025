@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ganesh Chaturthi Coming Soon</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff8e1;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .gif-banner img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #d84315;
+    }
+
+    .countdown {
+      font-size: 24px;
+      color: #6d4c41;
+      margin: 10px 0 30px;
+    }
+
+    .wish-card {
+      background: #fff3e0;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: #ff7043;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #f4511e;
+    }
+
+    .share-buttons {
+      margin-top: 20px;
+    }
+
+    .share-buttons a {
+      margin: 10px;
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 15px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .whatsapp {
+      background: #25D366;
+    }
+
+    .instagram {
+      background: #E1306C;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 90%;
+      max-width: 300px;
+      margin-top: 10px;
+    }
+
+    #wish-result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+
+    footer {
+      margin-top: 40px;
+      color: #795548;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gif-banner">
+    <img src="https://i.ibb.co/GQp5j6w2/8b363f2ac10eac5f9bba7bdccc77fb6f.gif" alt="Ganesh GIF">
+  </div>
+
+  <div class="container">
+    <h1>Ganesh Chaturthi Coming Soon!</h1>
+    <p class="countdown" id="countdown">Calculating...</p>
+
+    <!-- Share Buttons -->
+    <div class="share-buttons">
+      <a class="whatsapp" href="https://wa.me/?text=Wishing%20you%20a%20Happy%20Ganesh%20Chaturthi!%20Check%20this%20site:%20https://example.com" target="_blank">Share on WhatsApp</a>
+      <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
+    </div>
+
+    <!-- Wishes (Hidden Until 27 August) -->
+    <div id="predefinedWishes" class="hidden">
+      <div class="wish-card">
+        <p id="wishText">Wishing you a Happy Ganesh Chaturthi! May Lord Ganesha bless you with health, wealth, and happiness.</p>
+        <button onclick="copyWish()">Copy</button>
+      </div>
+
+      <div class="wish-card">
+        <p id="wishText2">गणपति बाप्पा मोरया! आपको और आपके परिवार को गणेश चतुर्थी की हार्दिक शुभकामनाएं।</p>
+        <button onclick="copyWish2()">कॉपी करें</button>
+      </div>
+    </div>
+
+    <!-- User Wish -->
+    <div class="wish-card">
+      <p>Apni wish likho:</p>
+      <input type="text" id="userWish" placeholder="Meri wish...">
+      <button onclick="submitWish()">Send Wish</button>
+      <p id="wish-result" class="hidden">Aapki wish puri ho!</p>
+    </div>
+
+    <footer>
+      <p>Made with love for Ganesh Chaturthi 2025</p>
+    </footer>
+  </div>
+
+  <script>
+    // Countdown and Date Logic
+    const countdownEl = document.getElementById("countdown");
+    const predefinedWishes = document.getElementById("predefinedWishes");
+    const userWishSection = document.getElementById("userWishSection");
+    function updateCountdown() {
+      const today = new Date();
+      const target = new Date("2025-08-27");
+      const timeDiff = target - today;
+      const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+      countdownEl.textContent = `Only ${daysLeft} day(s) left!`;
+
+      if (daysLeft <= 0) {
+        // Show Wishes after 27th August
+        predefinedWishes.classList.remove("hidden");
+        userWishSection.classList.remove("hidden");
+      } else {
+        // Hide Wishes Before 27th August
+        predefinedWishes.classList.add("hidden");
+        userWishSection.classList.add("hidden");
+      }
+    }
+
+    updateCountdown();
+
+    // Copy buttons
+    function copyWish() {
+      const text = document.getElementById('wishText').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Wish copied!');
+    }
+
+    function copyWish2() {
+      const text = document.getElementById('wishText2').innerText;
+      navigator.clipboard.writeText(text);
+      alert('शुभकामना कॉपी हो गई!');
+    }
+
+    // User Wish
+    function submitWish() {
+      const userWish = document.getElementById("userWish").value.trim();
+      const result = document.getElementById("wish-result");
+      if (userWish.length > 0) {
+        result.textContent = "Aapki wish puri ho!";
+        result.classList.remove("hidden");
+      } else {
+        result.textContent = "Please enter your wish!";
+        result.classList.remove("hidden");
+      }
+    }
+  </script>
+
+</body>
+</html>
