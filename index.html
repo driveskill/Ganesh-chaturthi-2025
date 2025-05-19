@@ -98,6 +98,11 @@
       color: green;
     }
 
+    .ad-container {
+      text-align: center;
+      margin-top: 40px;
+    }
+
     footer {
       margin-top: 40px;
       color: #795548;
@@ -114,13 +119,11 @@
     <h1>Ganesh Chaturthi Coming Soon!</h1>
     <p class="countdown" id="countdown">Calculating...</p>
 
-    <!-- Share Buttons -->
     <div class="share-buttons">
       <a class="whatsapp" id="whatsappShare" href="#" target="_blank">Share on WhatsApp</a>
       <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
     </div>
 
-    <!-- Wishes (Hidden Until 27 August) -->
     <div id="predefinedWishes" class="hidden">
       <div class="wish-card">
         <p id="wishText">Wishing you a Happy Ganesh Chaturthi! May Lord Ganesha bless you with health, wealth, and happiness.</p>
@@ -133,12 +136,25 @@
       </div>
     </div>
 
-    <!-- User Wish -->
     <div class="wish-card" id="userWishSection">
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
       <p id="wish-result" class="hidden"></p>
+    </div>
+
+    <!-- Ad Code -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'd1f2fcb2b19999d8eac7451e86e5fb75',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/d1f2fcb2b19999d8eac7451e86e5fb75/invoke.js"></script>
     </div>
 
     <footer>
@@ -171,13 +187,11 @@
 
     updateCountdown();
 
-    // WhatsApp Share Button Setup
     const whatsappBtn = document.getElementById("whatsappShare");
     const shareText = "Ganesh Chaturthi 2025 is coming! Check this out:";
     const shareURL = "https://driveskill.github.io/Ganesh-chaturthi-2025/";
     whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareURL)}`;
 
-    // Copy buttons
     function copyWish() {
       const text = document.getElementById('wishText').innerText;
       navigator.clipboard.writeText(text);
@@ -190,7 +204,6 @@
       alert('शुभकामना कॉपी हो गई!');
     }
 
-    // User Wish
     function submitWish() {
       const userWish = document.getElementById("userWish").value.trim();
       const result = document.getElementById("wish-result");
@@ -208,5 +221,6 @@
       }
     }
   </script>
+
 </body>
 </html>
