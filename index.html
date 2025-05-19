@@ -116,7 +116,7 @@
 
     <!-- Share Buttons -->
     <div class="share-buttons">
-      <a class="whatsapp" href="https://wa.me/?text=Wishing%20you%20a%20Happy%20Ganesh%20Chaturthi!%20Check%20this%20site:%20https://example.com" target="_blank">Share on WhatsApp</a>
+      <a class="whatsapp" id="whatsappShare" href="#" target="_blank">Share on WhatsApp</a>
       <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
     </div>
 
@@ -134,7 +134,7 @@
     </div>
 
     <!-- User Wish -->
-    <div class="wish-card">
+    <div class="wish-card hidden" id="userWishSection">
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
@@ -147,30 +147,34 @@
   </div>
 
   <script>
-    // Countdown and Date Logic
     const countdownEl = document.getElementById("countdown");
     const predefinedWishes = document.getElementById("predefinedWishes");
     const userWishSection = document.getElementById("userWishSection");
+
     function updateCountdown() {
       const today = new Date();
-      const target = new Date("2025-08-27");
+      const target = new Date("2025-08-27T00:00:00");
       const timeDiff = target - today;
       const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
       countdownEl.textContent = `Only ${daysLeft} day(s) left!`;
 
       if (daysLeft <= 0) {
-        // Show Wishes after 27th August
         predefinedWishes.classList.remove("hidden");
         userWishSection.classList.remove("hidden");
       } else {
-        // Hide Wishes Before 27th August
         predefinedWishes.classList.add("hidden");
         userWishSection.classList.add("hidden");
       }
     }
 
     updateCountdown();
+
+    // WhatsApp Share Button Setup
+    const whatsappBtn = document.getElementById("whatsappShare");
+    const shareText = "Ganesh Chaturthi 2025 is coming! Check this out:";
+    const shareURL = "https://driveskill.github.io/Ganesh-chaturthi-2025/";
+    whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareURL)}`;
 
     // Copy buttons
     function copyWish() {
