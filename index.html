@@ -15,14 +15,14 @@
 
     .gif-banner img {
       width: 100%;
-      max-height: 300px;
+      max-height: 200px;
       object-fit: cover;
     }
 
     .container {
       max-width: 600px;
       margin: auto;
-      padding: 20px;
+      padding: 10px;
     }
 
     h1 {
@@ -37,8 +37,8 @@
 
     .wish-card {
       background: #fff3e0;
-      margin: 20px 0;
-      padding: 20px;
+      margin: 10px 0;
+      padding: 15px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
@@ -100,12 +100,37 @@
 
     .ad-container {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .ad-container iframe {
+      max-width: 100%;
+      height: auto;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 20px;
       color: #795548;
+    }
+
+    @media screen and (max-width: 480px) {
+      .gif-banner img {
+        max-height: 180px;
+      }
+
+      .wish-card, .container {
+        padding: 10px;
+      }
+
+      .countdown {
+        font-size: 20px;
+      }
+
+      .share-buttons a {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
@@ -145,16 +170,7 @@
 
     <!-- Ad Code -->
     <div class="ad-container">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : 'd1f2fcb2b19999d8eac7451e86e5fb75',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-        };
-      </script>
-<script type='text/javascript' src='//pl26687380.profitableratecpm.com/5a/ba/7a/5aba7ad2dd3b4c1162d321a5a11a598c.js'></script>
+       <script type='text/javascript' src='//pl26687380.profitableratecpm.com/5a/ba/7a/5aba7ad2dd3b4c1162d321a5a11a598c.js'></script>
       <script type="text/javascript" src="//www.highperformanceformat.com/d1f2fcb2b19999d8eac7451e86e5fb75/invoke.js"></script>
     </div>
 
@@ -222,6 +238,5 @@
       }
     }
   </script>
-
 </body>
 </html>
