@@ -138,7 +138,7 @@
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
-      <p id="wish-result" class="hidden">Aapki wish puri ho!</p>
+      <p id="wish-result" class="hidden"></p>
     </div>
 
     <footer>
@@ -150,6 +150,8 @@
     const countdownEl = document.getElementById("countdown");
     const predefinedWishes = document.getElementById("predefinedWishes");
 
+    let isAfterAug27 = false;
+
     function updateCountdown() {
       const today = new Date();
       const target = new Date("2025-08-27T00:00:00");
@@ -160,8 +162,10 @@
 
       if (daysLeft <= 0) {
         predefinedWishes.classList.remove("hidden");
+        isAfterAug27 = true;
       } else {
         predefinedWishes.classList.add("hidden");
+        isAfterAug27 = false;
       }
     }
 
@@ -190,8 +194,13 @@
     function submitWish() {
       const userWish = document.getElementById("userWish").value.trim();
       const result = document.getElementById("wish-result");
+
       if (userWish.length > 0) {
-        result.textContent = "Aapki wish puri ho!";
+        if (isAfterAug27) {
+          result.textContent = "Ganpati Bappa aapki wish puri karenge!";
+        } else {
+          result.textContent = "27 August ko aana surprise hai!";
+        }
         result.classList.remove("hidden");
       } else {
         result.textContent = "Please enter your wish!";
