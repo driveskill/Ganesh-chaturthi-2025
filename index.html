@@ -134,7 +134,7 @@
     </div>
 
     <!-- User Wish -->
-    <div class="wish-card hidden" id="userWishSection">
+    <div class="wish-card" id="userWishSection">
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
@@ -149,7 +149,6 @@
   <script>
     const countdownEl = document.getElementById("countdown");
     const predefinedWishes = document.getElementById("predefinedWishes");
-    const userWishSection = document.getElementById("userWishSection");
 
     function updateCountdown() {
       const today = new Date();
@@ -161,10 +160,8 @@
 
       if (daysLeft <= 0) {
         predefinedWishes.classList.remove("hidden");
-        userWishSection.classList.remove("hidden");
       } else {
         predefinedWishes.classList.add("hidden");
-        userWishSection.classList.add("hidden");
       }
     }
 
@@ -201,6 +198,7 @@
         result.classList.remove("hidden");
       }
     }
-  </script>
+  </script>
+
 </body>
 </html>
