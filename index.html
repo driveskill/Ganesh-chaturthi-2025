@@ -129,13 +129,17 @@
       <a class="whatsapp" href="https://wa.me/?text=गणेश%20चतुर्थी%20की%20हार्दिक%20शुभकामनाएं!%20देखें:%20https://driveskill.github.io/Ganesh-chaturthi-2025/" target="_blank">व्हाट्सएप पर शेयर करें</a>
       <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
     </div>
-<!-- User Wish (Always Visible) -->
+<!-- User Wish (connected to Google Form) -->
     <div class="wish-card">
       <p>Apni wish likho:</p>
-      <input type="text" id="userWish" placeholder="Meri wish...">
-      <button onclick="submitWish()">Send Wish</button>
-      <p id="wish-result" class="hidden">Aapki wish puri ho!</p>
-    </div>   
+      <form id="wishForm" action="https://docs.google.com/spreadsheets/d/e/2PACX-1vQaZYBG5BoOlN9rPlgE1NZH7WkCNdfOobykvLvyyqPV0b9ZhVCSm_3vTY8Fn4rGcqSWKnRQh7fsDNhM/pub?output=csv" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <input type="text" name="entry.1829685577" id="userWish" placeholder="Meri wish..." required>
+        <button type="submit">Send Wish</button>
+      </form>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) showSuccess();"></iframe>
+      <p id="wish-result" class="hidden">Aapki wish submit ho gayi!</p>
+    </div>
+
     <!-- Predefined Wishes (Visible after Aug 27) -->
     <div id="predefinedWishes" class="hidden">
       <div class="wish-card">
