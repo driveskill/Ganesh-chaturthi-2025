@@ -12,37 +12,31 @@
       padding: 0;
       text-align: center;
     }
-
     .gif-banner img {
       width: 100%;
-      height: 100%; /* Ensures full height */
-      object-fit: contain; /* Keeps the aspect ratio while filling the width */
+      max-height: 300px;
+      object-fit: cover;
     }
-
     .container {
       max-width: 600px;
       margin: auto;
-      padding: 10px;
+      padding: 20px;
     }
-
     h1 {
       color: #d84315;
     }
-
     .countdown {
       font-size: 24px;
       color: #6d4c41;
       margin: 10px 0 30px;
     }
-
     .wish-card {
       background: #fff3e0;
-      margin: 10px 0;
-      padding: 15px;
+      margin: 20px 0;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-
     button {
       margin-top: 10px;
       padding: 8px 15px;
@@ -52,15 +46,12 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     button:hover {
       background: #f4511e;
     }
-
     .share-buttons {
       margin-top: 20px;
     }
-
     .share-buttons a {
       margin: 10px;
       text-decoration: none;
@@ -70,19 +61,15 @@
       color: white;
       font-weight: bold;
     }
-
     .whatsapp {
       background: #25D366;
     }
-
     .instagram {
       background: #E1306C;
     }
-
     .hidden {
       display: none;
     }
-
     input[type="text"] {
       padding: 10px;
       border: 1px solid #ccc;
@@ -91,36 +78,14 @@
       max-width: 300px;
       margin-top: 10px;
     }
-
     #wish-result {
       margin-top: 15px;
       font-weight: bold;
       color: green;
     }
-
     footer {
-      margin-top: 20px;
+      margin-top: 40px;
       color: #795548;
-    }
-
-    @media screen and (max-width: 480px) {
-      .gif-banner img {
-        height: auto; /* Let the height adjust naturally */
-        max-height: 180px;
-      }
-
-      .wish-card, .container {
-        padding: 10px;
-      }
-
-      .countdown {
-        font-size: 20px;
-      }
-
-      .share-buttons a {
-        font-size: 14px;
-        padding: 8px 12px;
-      }
     }
   </style>
 </head>
@@ -134,28 +99,33 @@
     <h1>Ganesh Chaturthi Coming Soon!</h1>
     <p class="countdown" id="countdown">Calculating...</p>
 
+    <!-- Share Buttons -->
     <div class="share-buttons">
-      <a class="whatsapp" id="whatsappShare" href="#" target="_blank">Share on WhatsApp</a>
+      <a class="whatsapp" href="https://wa.me/?text=Wishing%20you%20a%20Happy%20Ganesh%20Chaturthi!%20Check%20this%20site:%20https://driveskill.github.io/Ganesh-chaturthi-2025/" target="_blank">Share on WhatsApp</a>
       <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
     </div>
 
+    <!-- Wishes (Hidden Until 27 August) -->
     <div id="predefinedWishes" class="hidden">
       <div class="wish-card">
         <p id="wishText">Wishing you a Happy Ganesh Chaturthi! May Lord Ganesha bless you with health, wealth, and happiness.</p>
         <button onclick="copyWish()">Copy</button>
       </div>
-
       <div class="wish-card">
         <p id="wishText2">गणपति बाप्पा मोरया! आपको और आपके परिवार को गणेश चतुर्थी की हार्दिक शुभकामनाएं।</p>
         <button onclick="copyWish2()">कॉपी करें</button>
       </div>
     </div>
 
-    <div class="wish-card" id="userWishSection">
+    <!-- User Wish (connected to Google Form) -->
+    <div class="wish-card">
       <p>Apni wish likho:</p>
-      <input type="text" id="userWish" placeholder="Meri wish...">
-      <button onclick="submitWish()">Send Wish</button>
-      <p id="wish-result" class="hidden"></p>
+      <form id="wishForm" action="https://docs.google.com/forms/d/e/1FAIpQLSds4VAEwacI-E1aywQU829R8_ac8eEYhiHVB5BGsLe1RYdyPg/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <input type="text" name="entry.1829685577" id="userWish" placeholder="Meri wish..." required>
+        <button type="submit">Send Wish</button>
+      </form>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) showSuccess();"></iframe>
+      <p id="wish-result" class="hidden">Aapki wish submit ho gayi!</p>
     </div>
 
     <footer>
@@ -163,34 +133,14 @@
     </footer>
   </div>
 
-  <!-- First Ad -->
-  <div class="ad-container">
-    <script type="text/javascript">  
-      atOptions = { 
-        'key' : '5424d61e49c056a8d9399716f0b220e0', 
-        'format' : 'iframe', 
-        'height' : 600, 
-        'width' : 160, 
-        'params' : {} 
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/5424d61e49c056a8d9399716f0b220e0/invoke.js"></script>
-  </div>
-
-  <!-- Second Ad -->
-  <div class="ad-container">
-    <script type='text/javascript' src='//pl26687380.profitableratecpm.com/5a/ba/7a/5aba7ad2dd3b4c1162d321a5a11a598c.js'></script>
-  </div>
-
   <script>
+    // Countdown
     const countdownEl = document.getElementById("countdown");
     const predefinedWishes = document.getElementById("predefinedWishes");
 
-    let isAfterAug27 = false;
-
     function updateCountdown() {
       const today = new Date();
-      const target = new Date("2025-08-27T00:00:00");
+      const target = new Date("2025-08-27");
       const timeDiff = target - today;
       const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
@@ -198,20 +148,14 @@
 
       if (daysLeft <= 0) {
         predefinedWishes.classList.remove("hidden");
-        isAfterAug27 = true;
       } else {
         predefinedWishes.classList.add("hidden");
-        isAfterAug27 = false;
       }
     }
 
     updateCountdown();
 
-    const whatsappBtn = document.getElementById("whatsappShare");
-    const shareText = "Ganesh Chaturthi 2025 is coming! Check this out:";
-    const shareURL = "https://driveskill.github.io/Ganesh-chaturthi-2025/";
-    whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(shareText + " " + shareURL)}`;
-
+    // Copy buttons
     function copyWish() {
       const text = document.getElementById('wishText').innerText;
       navigator.clipboard.writeText(text);
@@ -224,21 +168,11 @@
       alert('शुभकामना कॉपी हो गई!');
     }
 
-    function submitWish() {
-      const userWish = document.getElementById("userWish").value.trim();
-      const result = document.getElementById("wish-result");
-
-      if (userWish.length > 0) {
-        if (isAfterAug27) {
-          result.textContent = "Ganpati Bappa aapki wish puri karenge!";
-        } else {
-          result.textContent = "27 August ko aana surprise hai!";
-        }
-        result.classList.remove("hidden");
-      } else {
-        result.textContent = "Please enter your wish!";
-        result.classList.remove("hidden");
-      }
+    // Google Form Submission Confirmation
+    let submitted = false;
+    function showSuccess() {
+      document.getElementById("wish-result").classList.remove("hidden");
+      document.getElementById("userWish").value = "";
     }
   </script>
 </body>
