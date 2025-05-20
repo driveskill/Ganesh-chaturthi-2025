@@ -22,6 +22,17 @@
       border-bottom: 5px solid #ff7043;
     }
 
+    .aarti-icon {
+      margin: 20px 0;
+    }
+
+    .aarti-icon img {
+      width: 70px;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
     .container {
       max-width: 700px;
       margin: auto;
@@ -104,11 +115,6 @@
       font-weight: bold;
     }
 
-    .ad-container {
-      margin: 30px auto;
-      text-align: center;
-    }
-
     footer {
       margin-top: 40px;
       color: #6d4c41;
@@ -123,6 +129,14 @@
     <img src="https://i.ibb.co/GQp5j6w2/8b363f2ac10eac5f9bba7bdccc77fb6f.gif" alt="Ganesh GIF">
   </div>
 
+  <!-- Aarti Icon -->
+  <div class="aarti-icon">
+    <a href="aarti.html">
+      <img src="https://i.ibb.co/N27QNXRJ/images-2.jpg" alt="Aarti Icon">
+    </a>
+    <p><strong>Ganpati Aarti Dekho</strong></p>
+  </div>
+
   <div class="container">
     <h1>Ganesh Chaturthi 2025 is Coming!</h1>
     <p class="countdown" id="countdown">Calculating days...</p>
@@ -134,15 +148,15 @@
       <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
     </div>
 
-    <!-- User Wish (Always Visible) -->
+    <!-- User Wish -->
     <div class="wish-card">
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
-      <p id="wish-result" class="hidden">27 ko aana surprised hai!</p>
+      <p id="wish-result" class="hidden"></p>
     </div>
 
-    <!-- Predefined Wishes (Visible after Aug 27) -->
+    <!-- Predefined Wishes -->
     <div id="predefinedWishes" class="hidden">
       <div class="wish-card">
         <p id="wishText">Wishing you a Happy Ganesh Chaturthi! May Lord Ganesha bless you with health, wealth, and happiness.</p>
@@ -154,13 +168,7 @@
         <button onclick="copyWish2()">कॉपी करें</button>
       </div>
     </div>
-<div class="ad-container">
-  <iframe src="https://www.profitableratecpm.com/de2zsggvhq?key=dc4c0b844b3ef09d2dca3983962874e5"
-    style="width:100%; max-width:300px; height:250px; border:none; overflow:hidden;"
-    scrolling="no" frameborder="0"></iframe>
-</div>   
-  <!-- Ad Slot 1 -->
-  <script type='text/javascript' src='//pl26687380.profitableratecpm.com/5a/ba/7a/5aba7ad2dd3b4c1162d321a5a11a598c.js'></script>
+  </div>
 
   <script>
     const countdownEl = document.getElementById("countdown");
@@ -168,11 +176,11 @@
     const today = new Date();
     const target = new Date("2025-08-27T00:00:00");
     const isAfterTarget = today >= target;
+    let wishSubmittedOnce = false;
 
     function updateCountdown() {
       const timeDiff = target - new Date();
       const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
       countdownEl.textContent = daysLeft > 0
         ? `Only ${daysLeft} day(s) left!`
         : "Ganesh Chaturthi is here!";
@@ -203,24 +211,24 @@
       const userWish = document.getElementById("userWish").value.trim();
       const result = document.getElementById("wish-result");
 
-      if (!isAfterTarget) {
-        result.textContent = "27 ko aana, surprise hai!";
-        result.style.color = "orange";
+      if (userWish.length === 0) {
+        result.textContent = "Please enter your wish!";
+        result.style.color = "red";
         result.classList.remove("hidden");
         return;
       }
 
-      if (userWish.length > 0) {
-        result.textContent = "Aapki wish puri ho!";
-        result.style.color = "green";
-        result.classList.remove("hidden");
+      if (!wishSubmittedOnce) {
+        result.textContent = isAfterTarget ? "Aapki wish puri ho!" : "27 ko aana, surprise hai!";
+        result.style.color = isAfterTarget ? "green" : "orange";
+        wishSubmittedOnce = true;
       } else {
-        result.textContent = "Please enter your wish!";
-        result.style.color = "red";
-        result.classList.remove("hidden");
+        result.textContent = "Ganpati Bappa Morya!";
+        result.style.color = "purple";
       }
+
+      result.classList.remove("hidden");
     }
   </script>
-
 </body>
 </html>
