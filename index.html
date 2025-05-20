@@ -156,54 +156,65 @@
     </footer>
   </div>
 
-  <script>
-    const countdownEl = document.getElementById("countdown");
-    const predefinedWishes = document.getElementById("predefinedWishes");
+ <script>
+  const countdownEl = document.getElementById("countdown");
+  const predefinedWishes = document.getElementById("predefinedWishes");
+  const today = new Date();
+  const target = new Date("2025-08-27T00:00:00");
+  const isAfterTarget = today >= target;
 
-    function updateCountdown() {
-      const today = new Date();
-      const target = new Date("2025-08-27T00:00:00");
-      const timeDiff = target - today;
-      const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  function updateCountdown() {
+    const timeDiff = target - new Date();
+    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-      countdownEl.textContent = daysLeft > 0
-        ? `Only ${daysLeft} day(s) left!`
-        : "Ganesh Chaturthi is here!";
+    countdownEl.textContent = daysLeft > 0
+      ? `Only ${daysLeft} day(s) left!`
+      : "Ganesh Chaturthi is here!";
 
-      if (daysLeft <= 0) {
-        predefinedWishes.classList.remove("hidden");
-      } else {
-        predefinedWishes.classList.add("hidden");
-      }
+    if (daysLeft <= 0) {
+      predefinedWishes.classList.remove("hidden");
+    } else {
+      predefinedWishes.classList.add("hidden");
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
+
+  function copyWish() {
+    const text = document.getElementById('wishText').innerText;
+    navigator.clipboard.writeText(text);
+    alert('Wish copied!');
+  }
+
+  function copyWish2() {
+    const text = document.getElementById('wishText2').innerText;
+    navigator.clipboard.writeText(text);
+    alert('शुभकामना कॉपी हो गई!');
+  }
+
+  function submitWish() {
+    const userWish = document.getElementById("userWish").value.trim();
+    const result = document.getElementById("wish-result");
+
+    if (!isAfterTarget) {
+      result.textContent = "27 ko aana, surprise hai!";
+      result.style.color = "orange";
+      result.classList.remove("hidden");
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000 * 60 * 60);
-
-    function copyWish() {
-      const text = document.getElementById('wishText').innerText;
-      navigator.clipboard.writeText(text);
-      alert('Wish copied!');
+    if (userWish.length > 0) {
+      result.textContent = "Aapki wish puri ho!";
+      result.style.color = "green";
+      result.classList.remove("hidden");
+    } else {
+      result.textContent = "Please enter your wish!";
+      result.style.color = "red";
+      result.classList.remove("hidden");
     }
-
-    function copyWish2() {
-      const text = document.getElementById('wishText2').innerText;
-      navigator.clipboard.writeText(text);
-      alert('शुभकामना कॉपी हो गई!');
-    }
-
-    function submitWish() {
-      const userWish = document.getElementById("userWish").value.trim();
-      const result = document.getElementById("wish-result");
-      if (userWish.length > 0) {
-        result.textContent = "Aapki wish puri ho!";
-        result.classList.remove("hidden");
-      } else {
-        result.textContent = "Please enter your wish!";
-        result.classList.remove("hidden");
-      }
-    }
-  </script>
+  }
+</script>
 
 </body>
 </html>
