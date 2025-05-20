@@ -3,76 +3,209 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ganesh Chaturthi Wishes</title>
+  <title>Ganesh Chaturthi 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
-      background: #fff8e1;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #fff8e1, #ffe0b2);
       margin: 0;
       padding: 0;
       text-align: center;
+      color: #4e342e;
+    }
+
+    .gif-banner img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-bottom: 5px solid #ff7043;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
     }
 
     h1 {
-      color: #d84315;
+      color: #bf360c;
+      font-size: 2.5em;
       margin-top: 20px;
+    }
+
+    .countdown {
+      font-size: 24px;
+      color: #6d4c41;
+      margin: 10px 0 30px;
     }
 
     .wish-card {
       background: #fff3e0;
-      margin: 15px auto;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 500px;
-      font-size: 16px;
-      color: #4e342e;
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      background: #ff7043;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e64a19;
+    }
+
+    .share-buttons {
+      margin-top: 20px;
+    }
+
+    .share-buttons a {
+      margin: 8px;
+      text-decoration: none;
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .whatsapp {
+      background: #25D366;
+    }
+
+    .instagram {
+      background: #E1306C;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 90%;
+      max-width: 300px;
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    #wish-result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
     }
 
     footer {
       margin-top: 40px;
-      color: #795548;
+      color: #6d4c41;
+      font-size: 14px;
+      padding-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Ganesh Chaturthi Wishes From Everyone!</h1>
+  <div class="gif-banner">
+    <img src="https://i.ibb.co/GQp5j6w2/8b363f2ac10eac5f9bba7bdccc77fb6f.gif" alt="Ganesh GIF">
+  </div>
 
-  <div id="wishes-container">Loading wishes...</div>
+  <div class="container">
+    <h1>Ganesh Chaturthi 2025 is Coming!</h1>
+    <p class="countdown" id="countdown">Calculating days...</p>
 
-  <footer>
-    <p>Made with love for Ganesh Chaturthi 2025</p>
-  </footer>
+    <!-- Share Buttons -->
+    <div class="share-buttons">
+      <a class="whatsapp" href="https://wa.me/?text=Wishing%20you%20a%20Happy%20Ganesh%20Chaturthi!%20Check%20this%20site:%20https://driveskill.github.io/Ganesh-chaturthi-2025/" target="_blank">Share on WhatsApp</a>
+      <a class="whatsapp" href="https://wa.me/?text=गणेश%20चतुर्थी%20की%20हार्दिक%20शुभकामनाएं!%20देखें:%20https://driveskill.github.io/Ganesh-chaturthi-2025/" target="_blank">व्हाट्सएप पर शेयर करें</a>
+      <a class="instagram" href="https://instagram.com/" target="_blank">Open Instagram</a>
+    </div>
+
+    <!-- User Wish (Always Visible) -->
+    <div class="wish-card">
+      <p>Apni wish likho:</p>
+      <input type="text" id="userWish" placeholder="Meri wish...">
+      <button onclick="submitWish()">Send Wish</button>
+      <p id="wish-result" class="hidden">Aapki wish puri ho!</p>
+    </div>
+
+    <!-- Predefined Wishes (Visible after Aug 27) -->
+    <div id="predefinedWishes" class="hidden">
+      <div class="wish-card">
+        <p id="wishText">Wishing you a Happy Ganesh Chaturthi! May Lord Ganesha bless you with health, wealth, and happiness.</p>
+        <button onclick="copyWish()">Copy</button>
+      </div>
+
+      <div class="wish-card">
+        <p id="wishText2">गणपति बाप्पा मोरया! आपको और आपके परिवार को गणेश चतुर्थी की हार्दिक शुभकामनाएं।</p>
+        <button onclick="copyWish2()">कॉपी करें</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>Made with love for Ganesh Chaturthi 2025</p>
+    </footer>
+  </div>
 
   <script>
-    async function loadWishes() {
+  	async function loadWishes() {
       const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaZYBG5BoOlN9rPlgE1NZH7WkCNdfOobykvLvyyqPV0b9ZhVCSm_3vTY8Fn4rGcqSWKnRQh7fsDNhM/pub?output=csv";
+    const countdownEl = document.getElementById("countdown");
+    const predefinedWishes = document.getElementById("predefinedWishes");
 
-      try {
-        const response = await fetch(sheetURL);
-        const data = await response.text();
-        const rows = data.split("\n").slice(1); // Skip header
-        const container = document.getElementById("wishes-container");
-        container.innerHTML = "";
+    function updateCountdown() {
+      const today = new Date();
+      const target = new Date("2025-08-27T00:00:00");
+      const timeDiff = target - today;
+      const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-        rows.forEach(row => {
-          const cols = row.split(",");
-          const wish = cols[1]; // Adjust if wish is in a different column
-          if (wish && wish.trim() !== "") {
-            const div = document.createElement("div");
-            div.className = "wish-card";
-            div.innerText = wish.trim();
-            container.appendChild(div);
-          }
-        });
-      } catch (err) {
-        document.getElementById("wishes-container").innerText = "Failed to load wishes.";
-        console.error("Error loading wishes:", err);
+      countdownEl.textContent = daysLeft > 0
+        ? `Only ${daysLeft} day(s) left!`
+        : "Ganesh Chaturthi is here!";
+
+      if (daysLeft <= 0) {
+        predefinedWishes.classList.remove("hidden");
+      } else {
+        predefinedWishes.classList.add("hidden");
       }
     }
 
-    loadWishes();
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60 * 60);
+
+    function copyWish() {
+      const text = document.getElementById('wishText').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Wish copied!');
+    }
+
+    function copyWish2() {
+      const text = document.getElementById('wishText2').innerText;
+      navigator.clipboard.writeText(text);
+      alert('शुभकामना कॉपी हो गई!');
+    }
+
+    function submitWish() {
+      const userWish = document.getElementById("userWish").value.trim();
+      const result = document.getElementById("wish-result");
+      if (userWish.length > 0) {
+        result.textContent = "Aapki wish puri ho!";
+        result.classList.remove("hidden");
+      } else {
+        result.textContent = "Please enter your wish!";
+        result.classList.remove("hidden");
+      }
+    }
   </script>
+
 </body>
 </html>
