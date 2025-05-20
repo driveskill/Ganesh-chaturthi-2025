@@ -102,7 +102,11 @@
     #wish-result {
       margin-top: 15px;
       font-weight: bold;
-      color: green;
+    }
+
+    .ad-container {
+      margin: 30px auto;
+      text-align: center;
     }
 
     footer {
@@ -135,7 +139,7 @@
       <p>Apni wish likho:</p>
       <input type="text" id="userWish" placeholder="Meri wish...">
       <button onclick="submitWish()">Send Wish</button>
-      <p id="wish-result" class="hidden">27 ko aana surprise hai!</p>
+      <p id="wish-result" class="hidden">27 ko aana surprised hai!</p>
     </div>
 
     <!-- Predefined Wishes (Visible after Aug 27) -->
@@ -151,70 +155,87 @@
       </div>
     </div>
 
+    <!-- Ad Slot 1 -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key': '5424d61e49c056a8d9399716f0b220e0',
+          'format': 'iframe',
+          'height': 600,
+          'width': 160,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/5424d61e49c056a8d9399716f0b220e0/invoke.js"></script>
+    </div>
+
     <footer>
       <p>Made with love for Ganesh Chaturthi 2025</p>
     </footer>
   </div>
 
- <script>
-  const countdownEl = document.getElementById("countdown");
-  const predefinedWishes = document.getElementById("predefinedWishes");
-  const today = new Date();
-  const target = new Date("2025-08-27T00:00:00");
-  const isAfterTarget = today >= target;
+  <!-- Ad Slot 2 -->
+  <script type='text/javascript' src='//pl26687380.profitableratecpm.com/5a/ba/7a/5aba7ad2dd3b4c1162d321a5a11a598c.js'></script>
 
-  function updateCountdown() {
-    const timeDiff = target - new Date();
-    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const predefinedWishes = document.getElementById("predefinedWishes");
+    const today = new Date();
+    const target = new Date("2025-08-27T00:00:00");
+    const isAfterTarget = today >= target;
 
-    countdownEl.textContent = daysLeft > 0
-      ? `Only ${daysLeft} day(s) left!`
-      : "Ganesh Chaturthi is here!";
+    function updateCountdown() {
+      const timeDiff = target - new Date();
+      const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-    if (daysLeft <= 0) {
-      predefinedWishes.classList.remove("hidden");
-    } else {
-      predefinedWishes.classList.add("hidden");
-    }
-  }
+      countdownEl.textContent = daysLeft > 0
+        ? `Only ${daysLeft} day(s) left!`
+        : "Ganesh Chaturthi is here!";
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000 * 60 * 60); // Update every hour
-
-  function copyWish() {
-    const text = document.getElementById('wishText').innerText;
-    navigator.clipboard.writeText(text);
-    alert('Wish copied!');
-  }
-
-  function copyWish2() {
-    const text = document.getElementById('wishText2').innerText;
-    navigator.clipboard.writeText(text);
-    alert('शुभकामना कॉपी हो गई!');
-  }
-
-  function submitWish() {
-    const userWish = document.getElementById("userWish").value.trim();
-    const result = document.getElementById("wish-result");
-
-    if (!isAfterTarget) {
-      result.textContent = "27 ko aana, surprise hai!";
-      result.style.color = "orange";
-      result.classList.remove("hidden");
-      return;
+      if (daysLeft <= 0) {
+        predefinedWishes.classList.remove("hidden");
+      } else {
+        predefinedWishes.classList.add("hidden");
+      }
     }
 
-    if (userWish.length > 0) {
-      result.textContent = "Aapki wish puri ho!";
-      result.style.color = "green";
-      result.classList.remove("hidden");
-    } else {
-      result.textContent = "Please enter your wish!";
-      result.style.color = "red";
-      result.classList.remove("hidden");
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60 * 60);
+
+    function copyWish() {
+      const text = document.getElementById('wishText').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Wish copied!');
     }
-  }
-</script>
+
+    function copyWish2() {
+      const text = document.getElementById('wishText2').innerText;
+      navigator.clipboard.writeText(text);
+      alert('शुभकामना कॉपी हो गई!');
+    }
+
+    function submitWish() {
+      const userWish = document.getElementById("userWish").value.trim();
+      const result = document.getElementById("wish-result");
+
+      if (!isAfterTarget) {
+        result.textContent = "27 ko aana, surprise hai!";
+        result.style.color = "orange";
+        result.classList.remove("hidden");
+        return;
+      }
+
+      if (userWish.length > 0) {
+        result.textContent = "Aapki wish puri ho!";
+        result.style.color = "green";
+        result.classList.remove("hidden");
+      } else {
+        result.textContent = "Please enter your wish!";
+        result.style.color = "red";
+        result.classList.remove("hidden");
+      }
+    }
+  </script>
 
 </body>
 </html>
