@@ -125,13 +125,6 @@
 </head>
 <body>
 
-  <!-- Background Music -->
-  <audio autoplay loop hidden>
-    <!-- Replace this with your own MP3 URL or file path -->
-    <source src="https://cdn.pixabay.com/audio/2022/10/11/audio_7b4e5c4a94.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
   <div class="gif-banner">
     <img src="https://i.ibb.co/GQp5j6w2/8b363f2ac10eac5f9bba7bdccc77fb6f.gif" alt="Ganesh GIF">
   </div>
@@ -176,6 +169,14 @@
       </div>
     </div>
   </div>
+
+  <!-- Play Music Button -->
+  <button onclick="playMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #ff7043; color: white; border: none; padding: 12px 16px; border-radius: 50px;">Play Ganpati Song</button>
+
+  <audio id="bgMusic" loop>
+    <source src="https://dl.sndup.net/9jpq/GanpatiBappaMorya.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     const countdownEl = document.getElementById("countdown");
@@ -235,6 +236,11 @@
       }
 
       result.classList.remove("hidden");
+    }
+
+    function playMusic() {
+      const audio = document.getElementById("bgMusic");
+      audio.play();
     }
   </script>
 </body>
