@@ -173,12 +173,20 @@
   <!-- Play Music Button -->
   <button onclick="playMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 999; background: #ff7043; color: white; border: none; padding: 12px 16px; border-radius: 50px;">Play Ganpati Song</button>
 
-  <audio id="bgMusic" loop>
+  <!-- Audio Element -->
+  <audio id="bgMusic" loop preload="auto">
     <source src="https://dl.sndup.net/9jpq/GanpatiBappaMorya.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
   <script>
+    const bgMusic = document.getElementById("bgMusic");
+
+    function playMusic() {
+      // Play the audio when button is clicked
+      bgMusic.play();
+    }
+
     const countdownEl = document.getElementById("countdown");
     const predefinedWishes = document.getElementById("predefinedWishes");
     const today = new Date();
@@ -236,11 +244,6 @@
       }
 
       result.classList.remove("hidden");
-    }
-
-    function playMusic() {
-      const audio = document.getElementById("bgMusic");
-      audio.play();
     }
   </script>
 </body>
