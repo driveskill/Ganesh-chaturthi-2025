@@ -39,19 +39,23 @@
       transition: opacity 2s ease;
     }
 
+    .audio-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
     .audio-button {
       background: #f44336;
       color: white;
       padding: 12px 20px;
       border-radius: 10px;
-      margin: 20px auto;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .audio-button:hover {
@@ -165,11 +169,13 @@
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Play Button with GIF -->
-  <button class="audio-button" onclick="toggleAudio()" id="audioButton">
-    <img src="https://i.ibb.co/RTLqSr0q/giphy.gif" alt="Play" style="width:24px;">
-    First Play This.. Fast
-  </button>
+  <!-- Play Button with GIF beside it -->
+  <div class="audio-container">
+    <button class="audio-button" onclick="toggleAudio()" id="audioButton">
+      First Play This.. Fast
+    </button>
+    <img src="https://i.ibb.co/RTLqSr0q/giphy.gif" alt="Play GIF" style="width: 60px; height: 60px;">
+  </div>
 
   <!-- GIF and Curtain -->
   <div class="gif-banner" id="ganpatiGif">
@@ -240,7 +246,7 @@
     function toggleAudio() {
       if (!isPlaying) {
         audio.play();
-        button.innerHTML = '<img src="https://i.ibb.co/RTLqSr0q/giphy.gif" style="width:24px;"> Ganpati Song Band Karo';
+        button.textContent = "Ganpati Song Band Karo";
         isPlaying = true;
         setTimeout(() => {
           curtain.style.opacity = "0";
@@ -248,7 +254,7 @@
       } else {
         audio.pause();
         audio.currentTime = 0;
-        button.innerHTML = '<img src="https://i.ibb.co/RTLqSr0q/giphy.gif" style="width:24px;"> Ganpati Song Play Karo';
+        button.textContent = "Ganpati Song Play Karo";
         isPlaying = false;
       }
     }
