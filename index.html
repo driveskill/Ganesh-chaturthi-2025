@@ -49,6 +49,9 @@
       font-weight: bold;
       cursor: pointer;
       border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .audio-button:hover {
@@ -162,8 +165,9 @@
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Play Button -->
+  <!-- Play Button with GIF -->
   <button class="audio-button" onclick="toggleAudio()" id="audioButton">
+    <img src="https://i.ibb.co/RTLqSr0q/giphy.gif" alt="Play" style="width:24px;">
     First Play This.. Fast
   </button>
 
@@ -233,19 +237,18 @@
     let wishSubmittedOnce = false;
     let isPlaying = false;
 
-    // Curtain fades out after 9s (only when user plays song)
     function toggleAudio() {
       if (!isPlaying) {
         audio.play();
-        button.textContent = "Ganpati Song Band Karo";
+        button.innerHTML = '<img src="https://i.ibb.co/RTLqSr0q/giphy.gif" style="width:24px;"> Ganpati Song Band Karo';
         isPlaying = true;
         setTimeout(() => {
           curtain.style.opacity = "0";
-        }, 7000); // Curtain fades out after 9 seconds
+        }, 7000);
       } else {
         audio.pause();
         audio.currentTime = 0;
-        button.textContent = "Ganpati Song Play Karo";
+        button.innerHTML = '<img src="https://i.ibb.co/RTLqSr0q/giphy.gif" style="width:24px;"> Ganpati Song Play Karo';
         isPlaying = false;
       }
     }
